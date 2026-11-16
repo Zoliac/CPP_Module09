@@ -1,11 +1,22 @@
+#include <cstdlib>
+#include <iostream>
 #include "BitcoinExchange.hpp"
 
-int main(int ac, char **av) {
-	if (ac != 2) {
-		std::cerr << "Error: Not enough arguments." << std::endl << "Usage: ./btc <file_name>" << std::endl;
-		exit(0);
+int main(int argc, char *argv[]) {
+	(void) argv;
+
+	if (argc != 2) {
+		std::cerr << "Error: could not open file" << std::endl;
+		return EXIT_FAILURE;
 	}
-	BitcoinExchange	test;
-	test.FillMap("data.csv");
-	test.CalculateValue(av[1]);
+
+	try {
+		BitcoinExchange bitcoinExchange("data.csv");
+		bitcoinExchange.displayExchange(argv[1]);
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	return EXIT_SUCCESS;
 }

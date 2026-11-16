@@ -13,7 +13,7 @@ void PmergeMe::parsing(char **argv)
 		std::istringstream	test(arg);
 		int	nb;
 		if (!(test >> nb) || nb < 0) {
-			std::cout << "Error: invalid input: " << arg << std::endl;
+			std::cout << std::endl << "Error: invalid input: " << arg << std::endl;
 			exit(1);
 		}
 		std::cout << nb << " ";

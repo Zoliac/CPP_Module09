@@ -1,23 +1,22 @@
 #pragma once 
-
-#include <string>
-#include <sstream>
-#include <fstream>
-#include <iostream>
+#include <ctime>
 #include <map>
-#include <algorithm>
-#include <iterator>
+#include <cstdlib>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+#include <fstream>
 
 class BitcoinExchange {
 	private:
-		std::map<std::string, float> _data;
-	public:
-		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange &src);
-		BitcoinExchange& operator=(const BitcoinExchange &src);
-		~BitcoinExchange();
-		void FillMap(std::string DataBase);
-		void CalculateValue(std::string infile);
-		std::map<std::string, float>::iterator findDateInMap(std::string date);
+		std::map<std::time_t, double>	_data;
 
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &bitcoinExchange);
+		BitcoinExchange	&operator=(const BitcoinExchange &bitcoinExchange);
+
+	public:
+		BitcoinExchange(const std::string &dataFile);
+		~BitcoinExchange();
+		void displayExchange(const std::string &fileName);
 };
